@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28531.58
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComplexCalculator", "ComplexCalculator\ComplexCalculator.csproj", "{F68E3D81-54DD-45AB-B1C1-CEDD949B56BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F68E3D81-54DD-45AB-B1C1-CEDD949B56BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F68E3D81-54DD-45AB-B1C1-CEDD949B56BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F68E3D81-54DD-45AB-B1C1-CEDD949B56BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F68E3D81-54DD-45AB-B1C1-CEDD949B56BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DA0A4A20-780C-40F5-B148-241334C02CC2}
+	EndGlobalSection
+EndGlobal
