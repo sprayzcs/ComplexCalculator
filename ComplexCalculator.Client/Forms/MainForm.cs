@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ComplexCalculator.Client
+namespace ComplexCalculator.Client.Forms
 {
     public partial class MainForm : Form
     {
