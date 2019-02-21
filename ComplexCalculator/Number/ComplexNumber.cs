@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace ComplexCalculator.Number
 {
-    public class ComplexNumber : ICloneable
+    public class ComplexNumber : ICloneable, IEquatable<ComplexNumber>
     {
         public double Real { get; private set; }
         public double Imaginary { get; private set; }
@@ -153,8 +153,6 @@ namespace ComplexCalculator.Number
             string polarPattern = @"(?<amount>-?[0-9.,]+)\*\(cos\((?<phi1>-?[0-9.,]+)\)(?<operator>[+-])sin\((?<phi2>-?[0-9.,]+)\)\)";
             string exponentialPattern = @"(?<amount>-?[0-9.,]+)\*e\^(?<angle>-?[0-9.,]+)i";
 
-            ComplexNumber toReturn = null;
-
             if (Regex.IsMatch(input, cartesianPattern)) // Cartesian form
             {
                 Match match = Regex.Match(input, cartesianPattern);
@@ -164,7 +162,7 @@ namespace ComplexCalculator.Number
                 double real = double.Parse(matches["real"].Value);
                 double imaginary = double.Parse(matches["imaginary"].Value);
 
-                toReturn = new ComplexNumber(real: real, imaginary: imaginary);
+                return new ComplexNumber(real: real, imaginary: imaginary);
             }
             else if(Regex.IsMatch(input, polarPattern)) // Polar form
             {
@@ -181,7 +179,7 @@ namespace ComplexCalculator.Number
                     throw new ArgumentException("phi1 is not equal to phi2");
                 }
 
-                toReturn = new ComplexNumber(angle: phi1, amount: amount);
+                return new ComplexNumber(angle: phi1, amount: amount);
             }
             else if(Regex.IsMatch(input, exponentialPattern))
             {
@@ -192,15 +190,20 @@ namespace ComplexCalculator.Number
                 double amount = double.Parse(matches["amount"].Value);
                 double angle = double.Parse(matches["angle"].Value);
 
-                toReturn = new ComplexNumber(angle: angle, amount: amount);
+                return new ComplexNumber(angle: angle, amount: amount);
             }
 
-            return toReturn;
+            return null;
         }
 
         public object Clone()
         {
             return new ComplexNumber(Real, Imaginary, Angle, Amount);
+        }
+
+        public bool Equals(ComplexNumber other)
+        {
+            return other.Real == this.Real && other.Imaginary == this.Imaginary;
         }
     }
 }

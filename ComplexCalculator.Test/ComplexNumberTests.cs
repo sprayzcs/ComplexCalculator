@@ -224,11 +224,29 @@ namespace ComplexCalculator.Test
         }
 
         [Test]
+        [TestCase("")]
+        public void ParseWrongInput(string input)
+        {
+            Assert.AreEqual(null, ComplexNumber.Parse(input));
+        }
+
+        [Test]
         public void FailToStringTest()
         {
             ComplexNumber number = new ComplexNumber(real: 10, imaginary: 5);
 
             Assert.AreEqual(string.Empty, number.ToString((NumberFormat)10));
+        }
+
+        [Test]
+        public void EqualsTest()
+        {
+            ComplexNumber number1 = new ComplexNumber(real: 10, imaginary: 5);
+            ComplexNumber number2 = new ComplexNumber(real: 10, imaginary: 5);
+
+            bool givenResult = number1.Equals(number2);
+
+            Assert.True(givenResult);
         }
 
         [Test]
