@@ -62,6 +62,21 @@ namespace ComplexCalculator.Test
         }
 
         [Test]
+        [TestCase(3, 5, 4, 8, 7, 13)]
+        [TestCase(-5, 4, 1, 2, -4, 6)]
+        [TestCase(-2, -6, 7, 3, 5, -3)]
+        public void AddOperatorTest(double real1, double imaginary1, double real2, double imaginary2, double realExpected, double imaginaryExpected)
+        {
+            ComplexNumber number1 = new ComplexNumber(real1, imaginary1);
+            ComplexNumber number2 = new ComplexNumber(real2, imaginary2);
+
+            ComplexNumber numberResultGiven = number1 + number2;
+
+            Assert.AreEqual(realExpected, numberResultGiven.Real);
+            Assert.AreEqual(imaginaryExpected, numberResultGiven.Imaginary);
+        }
+
+        [Test]
         [TestCase(3, 5, 4, 8, -1, -3)]
         [TestCase(-5, 4, 1, 2, -6, 2)]
         [TestCase(-2, -6, 7, 3, -9, -9)]
@@ -71,6 +86,21 @@ namespace ComplexCalculator.Test
             ComplexNumber number2 = new ComplexNumber(real2, imaginary2);
 
             ComplexNumber numberResultGiven = number1.Subtract(number2);
+
+            Assert.AreEqual(realExpected, numberResultGiven.Real);
+            Assert.AreEqual(imaginaryExpected, numberResultGiven.Imaginary);
+        }
+
+        [Test]
+        [TestCase(3, 5, 4, 8, -1, -3)]
+        [TestCase(-5, 4, 1, 2, -6, 2)]
+        [TestCase(-2, -6, 7, 3, -9, -9)]
+        public void SubtractOperatorTest(double real1, double imaginary1, double real2, double imaginary2, double realExpected, double imaginaryExpected)
+        {
+            ComplexNumber number1 = new ComplexNumber(real1, imaginary1);
+            ComplexNumber number2 = new ComplexNumber(real2, imaginary2);
+
+            ComplexNumber numberResultGiven = number1 - number2;
 
             Assert.AreEqual(realExpected, numberResultGiven.Real);
             Assert.AreEqual(imaginaryExpected, numberResultGiven.Imaginary);
@@ -90,6 +120,19 @@ namespace ComplexCalculator.Test
         }
 
         [Test]
+        [TestCase(-3, 5, 7, 2, -31, 29)]
+        public void MultiplyOperatorTest(double real1, double imaginary1, double real2, double imaginary2, double realExpected, double imaginaryExpected)
+        {
+            ComplexNumber number1 = new ComplexNumber(real1, imaginary1);
+            ComplexNumber number2 = new ComplexNumber(real2, imaginary2);
+
+            ComplexNumber numberResultGiven = number1 * number2;
+
+            Assert.AreEqual(realExpected, numberResultGiven.Real);
+            Assert.AreEqual(imaginaryExpected, numberResultGiven.Imaginary);
+        }
+
+        [Test]
         [TestCase(2, 5, 3, 10, 0.514, -0.046)]
         public void DivideTest(double real1, double imaginary1, double real2, double imaginary2, double realExpected, double imaginaryExpected)
         {
@@ -100,6 +143,32 @@ namespace ComplexCalculator.Test
 
             Assert.AreEqual(realExpected, Math.Round(numberResultGiven.Real, 3));
             Assert.AreEqual(imaginaryExpected, Math.Round(numberResultGiven.Imaginary, 3));
+        }
+
+        [Test]
+        [TestCase(2, 5, 3, 10, 0.514, -0.046)]
+        public void DivideOperatorTest(double real1, double imaginary1, double real2, double imaginary2, double realExpected, double imaginaryExpected)
+        {
+            ComplexNumber number1 = new ComplexNumber(real1, imaginary1);
+            ComplexNumber number2 = new ComplexNumber(real2, imaginary2);
+
+            ComplexNumber numberResultGiven = number1 / number2;
+
+            Assert.AreEqual(realExpected, Math.Round(numberResultGiven.Real, 3));
+            Assert.AreEqual(imaginaryExpected, Math.Round(numberResultGiven.Imaginary, 3));
+        }
+
+        [Test]
+        [TestCase(1, 4)]
+        [TestCase(1, -4)]
+        public void ConjugateOperatorTest(double real, double imaginary)
+        {
+            ComplexNumber number = new ComplexNumber(real, imaginary);
+            ComplexNumber conjugatedComplex = !number;
+
+            Assert.AreEqual(imaginary, number.Imaginary);
+            Assert.AreEqual(real, conjugatedComplex.Real);
+            Assert.AreEqual(imaginary * -1, conjugatedComplex.Imaginary);
         }
 
         [Test]
