@@ -1,6 +1,6 @@
-﻿namespace ComplexCalculator.Forms
+﻿namespace ComplexCalculator.Client
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Erforderliche Designervariable.

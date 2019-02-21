@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ComplexCalculator.Forms
+namespace ComplexCalculator.Client
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace ComplexCalculator.Forms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new MainForm());
         }
     }
 }

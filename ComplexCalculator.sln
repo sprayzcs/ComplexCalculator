@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComplexCalculator", "Comple
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComplexCalculator.Test", "ComplexCalculator.Test\ComplexCalculator.Test.csproj", "{18237E03-DB31-4191-93C0-725A77DE0023}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComplexCalculator.Forms", "ComplexCalculator.Forms\ComplexCalculator.Forms.csproj", "{8AA7ADC6-63BE-46CC-9E82-9524759697C7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComplexCalculator.Client", "ComplexCalculator.Client\ComplexCalculator.Client.csproj", "{8AA7ADC6-63BE-46CC-9E82-9524759697C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
