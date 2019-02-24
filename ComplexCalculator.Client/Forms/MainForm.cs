@@ -14,7 +14,9 @@ namespace ComplexCalculator.Client.Forms
 {
     public partial class MainForm : Form
     {
-        public MainForm()
+        private UserControlBase _activeInstance;
+
+        public  MainForm()
         {
             InitializeComponent();
         }
@@ -29,9 +31,13 @@ namespace ComplexCalculator.Client.Forms
             WindowState = FormWindowState.Minimized;
         }
 
-        private void SetUserControl<T>() where T : UserControlBase
+        private void SetUserControl<T>(params object[] args) where T : UserControlBase
         {
-            T instance = Activator.CreateInstance<T>() as T;
+            T instance = Activator.CreateInstance(typeof(T), args: args) as T;
+
+            if (instance.GetType() == _activeInstance?.GetType()) return;
+            _activeInstance = instance;
+
             this.panelUserControl.Controls.Clear();
             this.panelUserControl.Controls.Add(instance);
 
@@ -46,6 +52,11 @@ namespace ComplexCalculator.Client.Forms
         private void ButtonCalculationClickEvent(object sender, EventArgs e)
         {
             SetUserControl<CalculationUserControl>();
+        }
+
+        public void OpenInformationUserControl(string input)
+        {
+            SetUserControl<InformationUserControl>(input);
         }
 
         #region Move Window

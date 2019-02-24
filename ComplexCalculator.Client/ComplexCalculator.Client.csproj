@@ -79,6 +79,9 @@
     <Compile Include="Util\FixedButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Util\TransparentLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -92,6 +95,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControls\CalculationUserControl.resx">
+      <DependentUpon>CalculationUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\InformationUserControl.resx">
       <DependentUpon>InformationUserControl.cs</DependentUpon>
     </EmbeddedResource>

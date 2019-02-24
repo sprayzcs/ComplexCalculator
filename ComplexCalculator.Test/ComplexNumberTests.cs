@@ -47,6 +47,17 @@ namespace ComplexCalculator.Test
         }
 
         [Test]
+        [TestCase(1, 4, ExpectedResult = "1+4i")]
+        [TestCase(1, -5, ExpectedResult = "1-5i")]
+        [TestCase(1, 0, ExpectedResult = "1")]
+        public string InputToStringTest(int real, int imaginary)
+        {
+            ComplexNumber number = new ComplexNumber(real: real, imaginary: imaginary);
+
+            return number.ToString(NumberFormat.INPUT);
+        }
+
+        [Test]
         [TestCase(3, 5, 4, 8, 7, 13)]
         [TestCase(-5, 4, 1, 2, -4, 6)]
         [TestCase(-2, -6, 7, 3, 5, -3)]
@@ -186,8 +197,8 @@ namespace ComplexCalculator.Test
 
         [Test]
         [TestCase("10*(cos(45)+sin(45))", 10, 45)]
-        [TestCase("-10*(cos(-45)+sin(-45))", -10, -45)]
-        [TestCase("-10*(cos(-45)-sin(-45))", -10, -45)]
+        [TestCase("-10*(cos(-45)+sin(-45))", 10, -45)]
+        [TestCase("-10*(cos(-45)-sin(-45))", 10, -45)]
         public void ParsePolarTest(string input, double amount, double angle)
         {
             ComplexNumber number = ComplexNumber.Parse(input);
@@ -197,12 +208,20 @@ namespace ComplexCalculator.Test
 
         [Test]
         [TestCase("5*e^30i", 5, 30)]
-        [TestCase("-5*e^-30i", -5, -30)]
+        [TestCase("-5*e^-30i", 5, -30)]
         public void ParseExponentialTest(string input, double amount, double angle)
         {
             ComplexNumber number = ComplexNumber.Parse(input);
             Assert.AreEqual(amount, number.Amount);
             Assert.AreEqual(angle, number.Angle);
+        }
+
+        [Test]
+        [TestCase("3+5i", true)]
+        [TestCase("3+5", false)]
+        public void TryParseTest(string input, bool expectedValue)
+        {
+            Assert.AreEqual(expectedValue, ComplexNumber.TryParse(input, out ComplexNumber number));
         }
 
         [Test]

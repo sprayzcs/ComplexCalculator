@@ -189,6 +189,16 @@ namespace ComplexCalculator.Number
 
                         return returnString;
                     }
+                case NumberFormat.INPUT:
+                    {
+                        string returnString = Math.Round(Real, 3).ToString();
+
+                        if (Imaginary == 0) return returnString;
+
+                        returnString += (Imaginary < 0 ? "-" : "+") +  Math.Round(Math.Abs(Imaginary), 3) + "i";
+
+                        return returnString;
+                    }
             }
 
             return string.Empty;
@@ -201,6 +211,8 @@ namespace ComplexCalculator.Number
         /// <returns></returns>
         public static ComplexNumber Parse(string input)
         {
+            input = input.Replace(" ", "");
+
             string cartesianPattern = @"^(?<real>-?[0-9.,]+)(?<imaginary>([-+])[0-9.,]+)i$";
             string polarPattern = @"(?<amount>[0-9.,]+)\*\(cos\((?<phi1>-?[0-9.,]+)\)(?<operator>[+-])sin\((?<phi2>-?[0-9.,]+)\)\)";
             string exponentialPattern = @"(?<amount>[0-9.,]+)\*e\^(?<angle>-?[0-9.,]+)i";
@@ -246,6 +258,11 @@ namespace ComplexCalculator.Number
             }
 
             return null;
+        }
+
+        public static bool TryParse(string input, out ComplexNumber number)
+        {
+            return (number = Parse(input)) != null;
         }
 
         public object Clone()

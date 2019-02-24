@@ -10,6 +10,7 @@ namespace ComplexCalculator.Number
     {
         CARTESIAN,
         POLAR,
-        EXPONENTIAL
+        EXPONENTIAL,
+        INPUT
     }
 }
