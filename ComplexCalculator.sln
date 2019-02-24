@@ -3,11 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComplexCalculator", "ComplexCalculator\ComplexCalculator.csproj", "{F68E3D81-54DD-45AB-B1C1-CEDD949B56BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComplexCalculator", "ComplexCalculator\ComplexCalculator.csproj", "{F68E3D81-54DD-45AB-B1C1-CEDD949B56BC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComplexCalculator.Test", "ComplexCalculator.Test\ComplexCalculator.Test.csproj", "{18237E03-DB31-4191-93C0-725A77DE0023}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComplexCalculator.Client", "ComplexCalculator.Client\ComplexCalculator.Client.csproj", "{8AA7ADC6-63BE-46CC-9E82-9524759697C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9F7E662C-A3B8-4B53-AFFC-B1DB24FB105C}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
