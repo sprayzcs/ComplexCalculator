@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ComplexCalculator.Client.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -55,11 +58,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\CalculationUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\CalculationUserControl.Designer.cs">
+      <DependentUpon>CalculationUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\InformationUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\InformationUserControl.Designer.cs">
       <DependentUpon>InformationUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UserControlBase.Designer.cs">
+      <DependentUpon>UserControlBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Util\FixedButton.cs">
       <SubType>Component</SubType>
@@ -97,6 +112,12 @@
     <PackageReference Include="Costura.Fody">
       <Version>3.3.2</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ComplexCalculator\ComplexCalculator.csproj">
+      <Project>{f68e3d81-54dd-45ab-b1c1-cedd949b56bc}</Project>
+      <Name>ComplexCalculator</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -35,10 +35,10 @@ namespace ComplexCalculator.Test
         }
 
         [Test]
-        [TestCase(5, 45, ExpectedResult = "| 5 | • e ^ (45°)")]
-        [TestCase(-5, 45, ExpectedResult = "| 5 | • e ^ (45°)")]
-        [TestCase(5, -45, ExpectedResult = "| 5 | • e ^ (-45°)")]
-        [TestCase(-5, -45, ExpectedResult = "| 5 | • e ^ (-45°)")]
+        [TestCase(5, 45, ExpectedResult = "| 5 | • e ^ (45° • i)")]
+        [TestCase(-5, 45, ExpectedResult = "| 5 | • e ^ (45° • i)")]
+        [TestCase(5, -45, ExpectedResult = "| 5 | • e ^ (-45° • i)")]
+        [TestCase(-5, -45, ExpectedResult = "| 5 | • e ^ (-45° • i)")]
         public string ExponentialToStringTest(int amount, int angle)
         {
             ComplexNumber number = new ComplexNumber(amount: amount, angle: angle);
@@ -209,18 +209,7 @@ namespace ComplexCalculator.Test
         [TestCase("10*(cos(40)+sin(30))")]
         public void ParsePolarInequalAngleTest(string input)
         {
-            bool didThrow = false;
-
-            try
-            {
-                ComplexNumber.Parse(input);
-            }
-            catch(ArgumentException)
-            {
-                didThrow = true;
-            }
-
-            Assert.AreEqual(true, didThrow);
+            Assert.Null(ComplexNumber.Parse(input));
         }
 
         [Test]
@@ -236,17 +225,6 @@ namespace ComplexCalculator.Test
             ComplexNumber number = new ComplexNumber(real: 10, imaginary: 5);
 
             Assert.AreEqual(string.Empty, number.ToString((NumberFormat)10));
-        }
-
-        [Test]
-        public void EqualsTest()
-        {
-            ComplexNumber number1 = new ComplexNumber(real: 10, imaginary: 5);
-            ComplexNumber number2 = new ComplexNumber(real: 10, imaginary: 5);
-
-            bool givenResult = number1.Equals(number2);
-
-            Assert.True(givenResult);
         }
 
         [Test]

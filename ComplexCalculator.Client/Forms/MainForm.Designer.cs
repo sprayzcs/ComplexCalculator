@@ -30,12 +30,13 @@
         {
             this.panelHead = new System.Windows.Forms.Panel();
             this.labelHeadline = new System.Windows.Forms.Label();
-            this.buttonMinimize = new ComplexCalculator.Client.Util.FixedButton();
-            this.buttonExit = new ComplexCalculator.Client.Util.FixedButton();
             this.panelNavigation = new System.Windows.Forms.Panel();
-            this.buttonInformation = new ComplexCalculator.Client.Util.FixedButton();
             this.panelNavigationBorder = new System.Windows.Forms.Panel();
             this.panelUserControl = new System.Windows.Forms.Panel();
+            this.buttonInformation = new ComplexCalculator.Client.Util.FixedButton();
+            this.buttonMinimize = new ComplexCalculator.Client.Util.FixedButton();
+            this.buttonExit = new ComplexCalculator.Client.Util.FixedButton();
+            this.buttonCalculation = new ComplexCalculator.Client.Util.FixedButton();
             this.panelHead.SuspendLayout();
             this.panelNavigation.SuspendLayout();
             this.SuspendLayout();
@@ -65,6 +66,49 @@
             this.labelHeadline.TabIndex = 2;
             this.labelHeadline.Text = "ComplexCalculator ";
             this.labelHeadline.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panelNavigation
+            // 
+            this.panelNavigation.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panelNavigation.Controls.Add(this.buttonCalculation);
+            this.panelNavigation.Controls.Add(this.buttonInformation);
+            this.panelNavigation.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelNavigation.Location = new System.Drawing.Point(0, 50);
+            this.panelNavigation.Name = "panelNavigation";
+            this.panelNavigation.Size = new System.Drawing.Size(200, 400);
+            this.panelNavigation.TabIndex = 1;
+            // 
+            // panelNavigationBorder
+            // 
+            this.panelNavigationBorder.BackColor = System.Drawing.SystemColors.Control;
+            this.panelNavigationBorder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelNavigationBorder.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelNavigationBorder.Location = new System.Drawing.Point(200, 50);
+            this.panelNavigationBorder.Name = "panelNavigationBorder";
+            this.panelNavigationBorder.Size = new System.Drawing.Size(1, 400);
+            this.panelNavigationBorder.TabIndex = 2;
+            // 
+            // panelUserControl
+            // 
+            this.panelUserControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelUserControl.Location = new System.Drawing.Point(201, 50);
+            this.panelUserControl.Name = "panelUserControl";
+            this.panelUserControl.Size = new System.Drawing.Size(599, 400);
+            this.panelUserControl.TabIndex = 3;
+            // 
+            // buttonInformation
+            // 
+            this.buttonInformation.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonInformation.FlatAppearance.BorderSize = 0;
+            this.buttonInformation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonInformation.Location = new System.Drawing.Point(0, 0);
+            this.buttonInformation.Name = "buttonInformation";
+            this.buttonInformation.Size = new System.Drawing.Size(200, 50);
+            this.buttonInformation.TabIndex = 0;
+            this.buttonInformation.Text = "Informationen";
+            this.buttonInformation.UseVisualStyleBackColor = true;
+            this.buttonInformation.Click += new System.EventHandler(this.ButtonInformationClickEvent);
             // 
             // buttonMinimize
             // 
@@ -100,47 +144,19 @@
             this.buttonExit.UseVisualStyleBackColor = true;
             this.buttonExit.Click += new System.EventHandler(this.ButtonExitClickEvent);
             // 
-            // panelNavigation
+            // buttonCalculation
             // 
-            this.panelNavigation.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panelNavigation.Controls.Add(this.buttonInformation);
-            this.panelNavigation.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelNavigation.Location = new System.Drawing.Point(0, 50);
-            this.panelNavigation.Name = "panelNavigation";
-            this.panelNavigation.Size = new System.Drawing.Size(200, 400);
-            this.panelNavigation.TabIndex = 1;
-            // 
-            // buttonInformation
-            // 
-            this.buttonInformation.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonInformation.FlatAppearance.BorderSize = 0;
-            this.buttonInformation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonInformation.Location = new System.Drawing.Point(0, 0);
-            this.buttonInformation.Name = "buttonInformation";
-            this.buttonInformation.Size = new System.Drawing.Size(200, 50);
-            this.buttonInformation.TabIndex = 0;
-            this.buttonInformation.Text = "Informationen";
-            this.buttonInformation.UseVisualStyleBackColor = true;
-            this.buttonInformation.Click += new System.EventHandler(this.ButtonInformationClickEvent);
-            // 
-            // panelNavigationBorder
-            // 
-            this.panelNavigationBorder.BackColor = System.Drawing.SystemColors.Control;
-            this.panelNavigationBorder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelNavigationBorder.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelNavigationBorder.Location = new System.Drawing.Point(200, 50);
-            this.panelNavigationBorder.Name = "panelNavigationBorder";
-            this.panelNavigationBorder.Size = new System.Drawing.Size(1, 400);
-            this.panelNavigationBorder.TabIndex = 2;
-            // 
-            // panelUserControl
-            // 
-            this.panelUserControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelUserControl.Location = new System.Drawing.Point(201, 50);
-            this.panelUserControl.Name = "panelUserControl";
-            this.panelUserControl.Size = new System.Drawing.Size(599, 400);
-            this.panelUserControl.TabIndex = 3;
+            this.buttonCalculation.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonCalculation.FlatAppearance.BorderSize = 0;
+            this.buttonCalculation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCalculation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCalculation.Location = new System.Drawing.Point(0, 50);
+            this.buttonCalculation.Name = "buttonCalculation";
+            this.buttonCalculation.Size = new System.Drawing.Size(200, 50);
+            this.buttonCalculation.TabIndex = 1;
+            this.buttonCalculation.Text = "Rechnung";
+            this.buttonCalculation.UseVisualStyleBackColor = true;
+            this.buttonCalculation.Click += new System.EventHandler(this.ButtonCalculationClickEvent);
             // 
             // MainForm
             // 
@@ -170,6 +186,7 @@
         private System.Windows.Forms.Label labelHeadline;
         private Util.FixedButton buttonInformation;
         private System.Windows.Forms.Panel panelUserControl;
+        private Util.FixedButton buttonCalculation;
     }
 }
 

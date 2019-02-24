@@ -3,15 +3,37 @@ using System.Text.RegularExpressions;
 
 namespace ComplexCalculator.Number
 {
-    public class ComplexNumber : ICloneable, IEquatable<ComplexNumber>
+    public class ComplexNumber : ICloneable
     {
+        /// <summary>
+        /// The real part of an complex number
+        /// </summary>
         public double Real { get; private set; }
+
+        /// <summary>
+        /// The imaginary part of an complex number
+        /// </summary>
         public double Imaginary { get; private set; }
+
+        /// <summary>
+        /// The angle of an complex number (often called phi)
+        /// </summary>
         public double Angle { get; private set; }
+
+        /// <summary>
+        /// The amount of an complex number
+        /// </summary>
         public double Amount { get; private set; }
 
         private bool _calculated;
 
+        /// <summary>
+        /// Constructor that takes all four parameters of an complex number.
+        /// </summary>
+        /// <param name="real"></param>
+        /// <param name="imaginary"></param>
+        /// <param name="angle"></param>
+        /// <param name="amount"></param>
         public ComplexNumber(double? real = null, double? imaginary = null, double? angle = null, double? amount = null)
         {
             Calculate(real, imaginary, angle, amount);
@@ -23,16 +45,16 @@ namespace ComplexCalculator.Number
             {
                 if (real != null && imaginary != null)
                 {
-                    Real = real ?? 0;
-                    Imaginary = imaginary ?? 0;
+                    Real = real.Value;
+                    Imaginary = imaginary.Value;
 
                     Amount = Math.Sqrt(Math.Pow(Real, 2) + Math.Pow(Imaginary, 2));
-                    Angle = Math.Atan(Imaginary / Real);
+                    Angle = Math.Atan(Imaginary / Real) * (360 / (2 * Math.PI));
                 }
                 else if (amount != null && angle != null)
                 {
-                    Amount = amount ?? 0;
-                    Angle = angle ?? 0;
+                    Amount = amount.Value;
+                    Angle = angle.Value;
 
                     Real = Math.Abs(Amount) * Math.Cos(Angle);
                     Imaginary = Math.Abs(Amount) * Math.Sin(Angle);
@@ -43,6 +65,11 @@ namespace ComplexCalculator.Number
             }
         }
 
+        /// <summary>
+        /// Adds two complex numbers
+        /// </summary>
+        /// <param name="toAdd"><see cref="ComplexNumber"/> to add</param>
+        /// <returns></returns>
         public ComplexNumber Add(ComplexNumber toAdd)
         {
             double newReal = this.Real + toAdd.Real;
@@ -50,6 +77,11 @@ namespace ComplexCalculator.Number
             return new ComplexNumber(real: newReal, imaginary: newImaginary);
         }
 
+        /// <summary>
+        /// Subtracts two complex numbers
+        /// </summary>
+        /// <param name="toSubtract"><see cref="ComplexNumber"/> to subtract</param>
+        /// <returns></returns>
         public ComplexNumber Subtract(ComplexNumber toSubtract)
         {
             double newReal = this.Real - toSubtract.Real;
@@ -57,6 +89,11 @@ namespace ComplexCalculator.Number
             return new ComplexNumber(real: newReal, imaginary: newImaginary);
         }
 
+        /// <summary>
+        /// Multiplies two complex numbers
+        /// </summary>
+        /// <param name="toMultiply"><see cref="ComplexNumber"/> to multiply</param>
+        /// <returns></returns>
         public ComplexNumber Multiply(ComplexNumber toMultiply)
         {
             double a = this.Real;
@@ -71,6 +108,11 @@ namespace ComplexCalculator.Number
             return new ComplexNumber(real: newReal, imaginary: newImaginary);
         }
 
+        /// <summary>
+        /// Divides two complex numbers
+        /// </summary>
+        /// <param name="toDivide"><see cref="ComplexNumber"/> to divide</param>
+        /// <returns></returns>
         public ComplexNumber Divide(ComplexNumber toDivide)
         {
             double a = this.Real;
@@ -112,33 +154,38 @@ namespace ComplexCalculator.Number
             return complexNumber;
         }
 
+        /// <summary>
+        /// Formats complex number to a specific format
+        /// </summary>
+        /// <param name="format">Format for the complex number</param>
+        /// <returns></returns>
         public string ToString(NumberFormat format)
         {
             switch(format)
             {
                 case NumberFormat.CARTESIAN:
                     {
-                        string returnString = Real.ToString();
+                        string returnString = Math.Round(Real, 3).ToString();
 
                         if (Imaginary == 0) return returnString;
 
-                        returnString += " " + (Imaginary < 0 ? "-" : "+") + " " + Math.Abs(Imaginary) + " • i";
+                        returnString += " " + (Imaginary < 0 ? "-" : "+") + " " + Math.Round(Math.Abs(Imaginary), 3) + " • i";
 
                         return returnString;
                     }
                 case NumberFormat.POLAR:
                     {
-                        string returnString = $"| {Math.Abs(Amount).ToString()} | • ";
+                        string returnString = $"| {Math.Round(Math.Abs(Amount), 3).ToString()} | • ";
 
-                        returnString += $"(cos({Angle}) + sin({Angle}) • i)";
+                        returnString += $"(cos({Math.Round(Angle, 3)}) + sin({Math.Round(Angle, 3)}) • i)";
 
                         return returnString;
                     }
                 case NumberFormat.EXPONENTIAL:
                     {
-                        string returnString = $"| {Math.Abs(Amount).ToString()} | • ";
+                        string returnString = $"| {Math.Round(Math.Abs(Amount), 3).ToString()} | • ";
 
-                        returnString += $"e ^ ({Angle}°)";
+                        returnString += $"e ^ ({Math.Round(Angle, 3)}° • i)";
 
                         return returnString;
                     }
@@ -147,11 +194,16 @@ namespace ComplexCalculator.Number
             return string.Empty;
         }
 
+        /// <summary>
+        /// Parses an input string for a complex number; checks for cartesian, polar and exponential form
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static ComplexNumber Parse(string input)
         {
-            string cartesianPattern = @"(?<real>-?[0-9.,]+)(?<imaginary>([-+])[0-9.,]+)i";
-            string polarPattern = @"(?<amount>-?[0-9.,]+)\*\(cos\((?<phi1>-?[0-9.,]+)\)(?<operator>[+-])sin\((?<phi2>-?[0-9.,]+)\)\)";
-            string exponentialPattern = @"(?<amount>-?[0-9.,]+)\*e\^(?<angle>-?[0-9.,]+)i";
+            string cartesianPattern = @"^(?<real>-?[0-9.,]+)(?<imaginary>([-+])[0-9.,]+)i$";
+            string polarPattern = @"(?<amount>[0-9.,]+)\*\(cos\((?<phi1>-?[0-9.,]+)\)(?<operator>[+-])sin\((?<phi2>-?[0-9.,]+)\)\)";
+            string exponentialPattern = @"(?<amount>[0-9.,]+)\*e\^(?<angle>-?[0-9.,]+)i";
 
             if (Regex.IsMatch(input, cartesianPattern)) // Cartesian form
             {
@@ -176,7 +228,7 @@ namespace ComplexCalculator.Number
 
                 if(phi1 != phi2)
                 {
-                    throw new ArgumentException("phi1 is not equal to phi2");
+                    return null;
                 }
 
                 return new ComplexNumber(angle: phi1, amount: amount);
@@ -199,11 +251,6 @@ namespace ComplexCalculator.Number
         public object Clone()
         {
             return new ComplexNumber(Real, Imaginary, Angle, Amount);
-        }
-
-        public bool Equals(ComplexNumber other)
-        {
-            return other.Real == this.Real && other.Imaginary == this.Imaginary;
         }
     }
 }

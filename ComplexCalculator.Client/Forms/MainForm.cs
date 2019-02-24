@@ -29,7 +29,7 @@ namespace ComplexCalculator.Client.Forms
             WindowState = FormWindowState.Minimized;
         }
 
-        private void SetUserControl<T>() where T : UserControl
+        private void SetUserControl<T>() where T : UserControlBase
         {
             T instance = Activator.CreateInstance<T>() as T;
             this.panelUserControl.Controls.Clear();
@@ -41,6 +41,11 @@ namespace ComplexCalculator.Client.Forms
         private void ButtonInformationClickEvent(object sender, EventArgs e)
         {
             SetUserControl<InformationUserControl>();
+        }
+
+        private void ButtonCalculationClickEvent(object sender, EventArgs e)
+        {
+            SetUserControl<CalculationUserControl>();
         }
 
         #region Move Window
