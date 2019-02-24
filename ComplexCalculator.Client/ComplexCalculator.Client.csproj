@@ -36,6 +36,9 @@
   <PropertyGroup>
     <StartupObject>ComplexCalculator.Client.Program</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -124,6 +127,9 @@
       <Project>{f68e3d81-54dd-45ab-b1c1-cedd949b56bc}</Project>
       <Name>ComplexCalculator</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
