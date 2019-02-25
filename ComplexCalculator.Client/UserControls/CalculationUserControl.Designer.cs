@@ -47,6 +47,7 @@
             this.lblComplexNumberOneValidation = new System.Windows.Forms.Label();
             this.lblComplexNumberTwoValidation = new System.Windows.Forms.Label();
             this.buttonEqualToInformation = new System.Windows.Forms.Button();
+            this.buttonClear = new System.Windows.Forms.Button();
             this.panelOperationButtons.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -260,9 +261,20 @@
             this.buttonEqualToInformation.UseVisualStyleBackColor = true;
             this.buttonEqualToInformation.Click += new System.EventHandler(this.ButtonEqualToInformationClickEvent);
             // 
+            // buttonClear
+            // 
+            this.buttonClear.Location = new System.Drawing.Point(527, 183);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(50, 50);
+            this.buttonClear.TabIndex = 18;
+            this.buttonClear.Text = "C";
+            this.buttonClear.UseVisualStyleBackColor = true;
+            this.buttonClear.Click += new System.EventHandler(this.ButtonClearClickEvent);
+            // 
             // CalculationUserControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.buttonEqualToInformation);
             this.Controls.Add(this.lblComplexNumberTwoValidation);
             this.Controls.Add(this.lblComplexNumberOneValidation);
@@ -306,5 +318,6 @@
         private System.Windows.Forms.Label lblComplexNumberOneValidation;
         private System.Windows.Forms.Label lblComplexNumberTwoValidation;
         private System.Windows.Forms.Button buttonEqualToInformation;
+        private System.Windows.Forms.Button buttonClear;
     }
 }

@@ -134,5 +134,19 @@ namespace ComplexCalculator.Client.UserControls
         {
             MainForm.OpenInformationUserControl(equalsNumber.ToString(NumberFormat.INPUT));
         }
+
+        private void ButtonClearClickEvent(object sender, EventArgs e)
+        {
+            if (!(sender is Button button)) return;
+
+            txtComplexNumberEquals.Text = "";
+            txtComplexNumberOne.Text = "";
+            txtComplexNumberTwo.Text = "";
+
+            lblComplexNumberOneValidation.Text = "";
+            lblComplexNumberTwoValidation.Text = "";
+
+            buttonEqualToInformation.Enabled = false;
+        }
     }
 }
