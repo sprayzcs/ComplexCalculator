@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -15,6 +16,7 @@ namespace ComplexCalculator.Client.Forms
     public partial class MainForm : Form
     {
         private UserControlBase _activeInstance;
+        private List<UserControlBase> _savedInstances = new List<UserControlBase>();
 
         public  MainForm()
         {
@@ -33,7 +35,19 @@ namespace ComplexCalculator.Client.Forms
 
         private void SetUserControl<T>(params object[] args) where T : UserControlBase
         {
-            T instance = Activator.CreateInstance(typeof(T), args: args) as T;
+            UserControlBase savedInstance = _savedInstances.Where(i => i.GetType() == typeof(T)).FirstOrDefault();
+
+            UserControlBase instance = null;
+
+            if(args.Length != 0)
+            {
+                _savedInstances.Remove(savedInstance);
+                savedInstance = null;
+            }
+
+            instance = savedInstance ?? Activator.CreateInstance(typeof(T), args: args) as UserControlBase;
+
+            if (savedInstance == null) _savedInstances.Add(instance);
 
             if (instance.GetType() == _activeInstance?.GetType()) return;
             _activeInstance = instance;
@@ -70,9 +84,9 @@ namespace ComplexCalculator.Client.Forms
         }
 
         [DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        private static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
+        private static extern bool ReleaseCapture();
         #endregion
     }
 }
