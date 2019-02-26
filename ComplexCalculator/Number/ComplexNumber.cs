@@ -49,7 +49,17 @@ namespace ComplexCalculator.Number
                     Imaginary = imaginary.Value;
 
                     Amount = Math.Sqrt(Math.Pow(Real, 2) + Math.Pow(Imaginary, 2));
-                    Angle = Math.Atan(Imaginary / Real) * (360 / (2 * Math.PI));
+
+                    if (Real == 0 && Imaginary < 0) Angle = -(Math.PI / 2);
+                    else if (Real == 0 && Imaginary > 0) Angle = Math.PI / 2;
+                    else if (Real < 0 && Imaginary < 0) Angle = Math.Atan(Imaginary / Real) - Math.PI;
+                    else if (Real < 0 && Imaginary >= 0) Angle = Math.Atan(Imaginary / Real) + Math.PI;
+                    else if (Real > 0) Angle = Math.Atan(Imaginary / Real);
+                    else Angle = 0;
+
+                    Angle *= 360 / (2 * Math.PI);
+
+                    if (Angle < 0) Angle += 360;
                 }
                 else if (amount != null && angle != null)
                 {
