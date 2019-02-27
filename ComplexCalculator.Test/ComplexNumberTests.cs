@@ -233,9 +233,21 @@ namespace ComplexCalculator.Test
 
         [Test]
         [TestCase("")]
-        public void ParseWrongInput(string input)
+        public void ParseWrongInputTest(string input)
         {
             Assert.AreEqual(null, ComplexNumber.Parse(input));
+        }
+
+        [Test]
+        [TestCase(0, 1, 1, 90)]
+        [TestCase(0, 0, 0, 0)]
+        [TestCase(0, -1, 1, 270)]
+        public void CartesianCalculationTest(double real, double imaginary, double expAmount, double expAngle)
+        {
+            ComplexNumber number = new ComplexNumber(real: real, imaginary: imaginary);
+
+            Assert.AreEqual(expAmount, number.Amount);
+            Assert.AreEqual(expAngle, number.Angle);
         }
 
         [Test]

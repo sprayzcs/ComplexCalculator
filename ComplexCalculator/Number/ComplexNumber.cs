@@ -57,8 +57,7 @@ namespace ComplexCalculator.Number
                     else if (Real > 0) Angle = Math.Atan(Imaginary / Real);
                     else Angle = 0;
 
-                    Angle *= 360 / (2 * Math.PI);
-
+                    Angle *= (360 / (2 * Math.PI));
                     if (Angle < 0) Angle += 360;
                 }
                 else if (amount != null && angle != null)
@@ -66,8 +65,8 @@ namespace ComplexCalculator.Number
                     Amount = amount.Value;
                     Angle = angle.Value;
 
-                    Real = Math.Abs(Amount) * Math.Cos(Angle);
-                    Imaginary = Math.Abs(Amount) * Math.Sin(Angle);
+                    Real = Math.Abs(Amount) * Math.Cos(Angle * (Math.PI / 180));
+                    Imaginary = Math.Abs(Amount) * Math.Sin(Angle * (Math.PI / 180));
                 }
                 else throw new InvalidOperationException("you must give at least (Real and Imaginary) or (Amount and Angle)");
 
@@ -223,9 +222,9 @@ namespace ComplexCalculator.Number
         {
             input = input.Replace(" ", "");
 
-            string cartesianPattern = @"^(?<real>-?[0-9.,]+)(?<imaginary>([-+])[0-9.,]+)i$";
-            string polarPattern = @"(?<amount>[0-9.,]+)\*\(cos\((?<phi1>-?[0-9.,]+)\)(?<operator>[+-])sin\((?<phi2>-?[0-9.,]+)\)\)";
-            string exponentialPattern = @"(?<amount>[0-9.,]+)\*e\^(?<angle>-?[0-9.,]+)i";
+            string cartesianPattern = @"^(?<real>-?(\d+([,]\d+)?))(?<imaginary>([-+])(\d+([,]\d+)?))i$";
+            string polarPattern = @"(?<amount>(\d+([,]\d+)?))\*\(cos\((?<phi1>-?(\d+([,]\d+)?))\)(?<operator>[+-])sin\((?<phi2>-?(\d+([,]\d+)?))\)\)";
+            string exponentialPattern = @"(?<amount>-?(\d+([,]\d+)?))\*e\^(?<angle>-?(\d+([,]\d+)?))i";
 
             if (Regex.IsMatch(input, cartesianPattern)) // Cartesian form
             {
@@ -246,7 +245,7 @@ namespace ComplexCalculator.Number
 
                 double phi1 = double.Parse(matches["phi1"].Value);
                 double phi2 = double.Parse(matches["phi2"].Value);
-                double amount = double.Parse(matches["amount"].Value);
+                double amount = Math.Abs(double.Parse(matches["amount"].Value));
 
                 if(phi1 != phi2)
                 {
@@ -261,7 +260,7 @@ namespace ComplexCalculator.Number
 
                 GroupCollection matches = match.Groups;
 
-                double amount = double.Parse(matches["amount"].Value);
+                double amount = Math.Abs(double.Parse(matches["amount"].Value));
                 double angle = double.Parse(matches["angle"].Value);
 
                 return new ComplexNumber(angle: angle, amount: amount);
