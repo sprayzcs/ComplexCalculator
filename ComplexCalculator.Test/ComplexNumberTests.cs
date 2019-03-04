@@ -126,8 +126,8 @@ namespace ComplexCalculator.Test
 
             ComplexNumber numberResultGiven = number1.Multiply(number2);
 
-            Assert.AreEqual(realExpected, numberResultGiven.Real);
-            Assert.AreEqual(imaginaryExpected, numberResultGiven.Imaginary);
+            Assert.AreEqual(realExpected, numberResultGiven.Real, 0.001);
+            Assert.AreEqual(imaginaryExpected, numberResultGiven.Imaginary, 0.001);
         }
 
         [Test]
@@ -139,8 +139,8 @@ namespace ComplexCalculator.Test
 
             ComplexNumber numberResultGiven = number1 * number2;
 
-            Assert.AreEqual(realExpected, numberResultGiven.Real);
-            Assert.AreEqual(imaginaryExpected, numberResultGiven.Imaginary);
+            Assert.AreEqual(realExpected, numberResultGiven.Real, 0.001);
+            Assert.AreEqual(imaginaryExpected, numberResultGiven.Imaginary, 0.001);
         }
 
         [Test]
@@ -158,7 +158,7 @@ namespace ComplexCalculator.Test
 
         [Test]
         [TestCase(2, 5, 3, 10, 0.514, -0.046)]
-        public void DivideOperatorTest(double real1, double imaginary1, double real2, double imaginary2, double realExpected, double imaginaryExpected)
+            public void DivideOperatorTest(double real1, double imaginary1, double real2, double imaginary2, double realExpected, double imaginaryExpected)
         {
             ComplexNumber number1 = new ComplexNumber(real1, imaginary1);
             ComplexNumber number2 = new ComplexNumber(real2, imaginary2);

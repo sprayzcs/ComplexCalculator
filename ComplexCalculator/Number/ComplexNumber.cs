@@ -105,16 +105,10 @@ namespace ComplexCalculator.Number
         /// <returns></returns>
         public ComplexNumber Multiply(ComplexNumber toMultiply)
         {
-            double a = this.Real;
-            double c = toMultiply.Real;
+            double newAmount = this.Amount * toMultiply.Amount;
+            double newAngle = this.Angle + toMultiply.Angle;
 
-            double b = this.Imaginary;
-            double d = toMultiply.Imaginary;
-
-            double newReal = a * c - b * d;
-            double newImaginary = a * d + c * b;
-
-            return new ComplexNumber(real: newReal, imaginary: newImaginary);
+            return new ComplexNumber(amount: newAmount, angle: newAngle);
         }
 
         /// <summary>
@@ -124,16 +118,10 @@ namespace ComplexCalculator.Number
         /// <returns></returns>
         public ComplexNumber Divide(ComplexNumber toDivide)
         {
-            double a = this.Real;
-            double c = toDivide.Real;
+            double newAmount = this.Amount / toDivide.Amount;
+            double newAngle = this.Angle - toDivide.Angle;
 
-            double b = this.Imaginary;
-            double d = toDivide.Imaginary;
-
-            double newReal = (a * c + b * d) / (Math.Pow(c, 2) + Math.Pow(d, 2));
-            double newImaginary = (b * c - a * d) / (Math.Pow(c, 2) + Math.Pow(d, 2));
-
-            return new ComplexNumber(real: newReal, imaginary: newImaginary);
+            return new ComplexNumber(amount: newAmount, angle: newAngle);
         }
 
         public static ComplexNumber operator +(ComplexNumber toAdd1, ComplexNumber toAdd2)
