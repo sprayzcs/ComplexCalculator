@@ -129,19 +129,19 @@ namespace ComplexCalculator.Number
             return toAdd1.Add(toAdd2);
         }
 
-        public static ComplexNumber operator -(ComplexNumber toAdd1, ComplexNumber toAdd2)
+        public static ComplexNumber operator -(ComplexNumber toSub1, ComplexNumber toSub2)
         {
-            return toAdd1.Subtract(toAdd2);
+            return toSub1.Subtract(toSub2);
         }
 
-        public static ComplexNumber operator *(ComplexNumber toAdd1, ComplexNumber toAdd2)
+        public static ComplexNumber operator *(ComplexNumber toMul1, ComplexNumber toMul2)
         {
-            return toAdd1.Multiply(toAdd2);
+            return toMul1.Multiply(toMul2);
         }
 
-        public static ComplexNumber operator /(ComplexNumber toAdd1, ComplexNumber toAdd2)
+        public static ComplexNumber operator /(ComplexNumber toDiv1, ComplexNumber toDiv2)
         {
-            return toAdd1.Divide(toAdd2);
+            return toDiv1.Divide(toDiv2);
         }
 
         public static ComplexNumber operator !(ComplexNumber toConjugate)
