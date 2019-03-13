@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace ComplexCalculator.Number
 {
-    public class ComplexNumber : ICloneable
+    public class ComplexNumber : IArithmetic<ComplexNumber>, ICloneable
     {
         /// <summary>
         /// The real part of an complex number
