@@ -79,6 +79,7 @@
     <Compile Include="UserControls\UserControlBase.Designer.cs">
       <DependentUpon>UserControlBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Util\CalculationHistory.cs" />
     <Compile Include="Util\FixedButton.cs">
       <SubType>Component</SubType>
     </Compile>
